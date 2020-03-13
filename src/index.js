@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Dashboard from './pages/dashboard/index'
-import Login from './pages/Login/Index';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
+
+//Pages
+import Dashboard from './pages/dashboard/dashboard';
+import Login from './pages/Login/Login'
+
+import AuthContextProvider from './context/auth'
 
 ReactDOM.render(
     <BrowserRouter>
-        <Switch>
-            <Route  path="/login" component={Login} />
-            <Route  path="/dashboard" component={Dashboard} />
-            <Redirect  from="/" to="/dashboard"></Redirect>
-        </Switch>
-    </BrowserRouter>
-    , document.getElementById('root'));
+        <AuthContextProvider>
+            <Switch>
+                <Route path='/Login' component={Login} />
+                <Route path='/dashboard' component={Dashboard} />
+                <Redirect from='/' to='/dashboard' />
+            </Switch>
+        </AuthContextProvider>
+
+    </BrowserRouter>, document.getElementById('root'));
+
